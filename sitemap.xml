@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/09/09/linux-ssr-use/</loc>
-    
-    <lastmod>2017-10-14T07:37:28.363Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/tags/index.html</loc>
     
-    <lastmod>2017-10-14T07:37:05.419Z</lastmod>
+    <lastmod>2017-10-14T07:40:39.927Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/index.html</loc>
     
-    <lastmod>2017-10-14T07:36:48.319Z</lastmod>
+    <lastmod>2017-10-14T07:40:13.283Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/09/09/linux-ssr-use/</loc>
+    
+    <lastmod>2017-10-14T07:37:28.363Z</lastmod>
     
   </url>
   
