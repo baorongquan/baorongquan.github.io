@@ -1,0 +1,772 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mongo," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前面说了mongo的索引创建，查看，删除；今天主要来说下复合索引和索引使用时的注意事项。 复合索引mongodb支持用户为多个域创建索引，也就是复合索引。还是以用户登陆记录集合loginrecord为例，假设我们要查询用户登陆的每条记录，并按登陆时间逆序显示，所以需要为username和logintime创建复合索引。 12345678910111213141516171819202122&amp;gt;">
+<meta name="keywords" content="mongo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongo索引使用2">
+<meta property="og:url" content="http://yoursite.com/2017/10/15/mongo索引使用2/index.html">
+<meta property="og:site_name" content="从零开始的人生">
+<meta property="og:description" content="前面说了mongo的索引创建，查看，删除；今天主要来说下复合索引和索引使用时的注意事项。 复合索引mongodb支持用户为多个域创建索引，也就是复合索引。还是以用户登陆记录集合loginrecord为例，假设我们要查询用户登陆的每条记录，并按登陆时间逆序显示，所以需要为username和logintime创建复合索引。 12345678910111213141516171819202122&amp;gt;">
+<meta property="og:updated_time" content="2017-10-15T10:54:15.243Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongo索引使用2">
+<meta name="twitter:description" content="前面说了mongo的索引创建，查看，删除；今天主要来说下复合索引和索引使用时的注意事项。 复合索引mongodb支持用户为多个域创建索引，也就是复合索引。还是以用户登陆记录集合loginrecord为例，假设我们要查询用户登陆的每条记录，并按登陆时间逆序显示，所以需要为username和logintime创建复合索引。 12345678910111213141516171819202122&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/15/mongo索引使用2/"/>
+
+
+
+
+
+  <title>mongo索引使用2 | 从零开始的人生</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">从零开始的人生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">从零开始，你今天所做的一切最后的后果还是得由你来承担，此为因果！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/mongo索引使用2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baorongquan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从零开始的人生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mongo索引使用2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T17:15:39+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/15/mongo索引使用2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/15/mongo索引使用2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面说了mongo的索引创建，查看，删除；今天主要来说下复合索引和索引使用时的注意事项。</p>
+<h1 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h1><p>mongodb支持用户为多个域创建索引，也就是复合索引。<br>还是以用户登陆记录集合loginrecord为例，假设我们要查询用户登陆的每条记录，<br>并按登陆时间逆序显示，所以需要为username和logintime创建复合索引。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&gt; db.loginrecord.createIndex(&#123;<span class="attr">username</span>:<span class="number">1</span>,<span class="attr">logintime</span>:<span class="number">-1</span>&#125;)</div><div class="line">&gt; db.loginrecord.stats()</div><div class="line">&#123;</div><div class="line">        <span class="string">"ns"</span> : <span class="string">"test.loginrecord"</span>,</div><div class="line">        <span class="string">"count"</span> : <span class="number">1</span>,</div><div class="line">        <span class="string">"size"</span> : <span class="number">72</span>,</div><div class="line">        <span class="string">"avgObjSize"</span> : <span class="number">72</span>,</div><div class="line">        <span class="string">"storageSize"</span> : <span class="number">4096</span>,</div><div class="line">        <span class="string">"numExtents"</span> : <span class="number">1</span>,</div><div class="line">        <span class="string">"nindexes"</span> : <span class="number">3</span>,</div><div class="line">        <span class="string">"lastExtentSize"</span> : <span class="number">4096</span>,</div><div class="line">        <span class="string">"paddingFactor"</span> : <span class="number">1</span>,</div><div class="line">        <span class="string">"systemFlags"</span> : <span class="number">0</span>,</div><div class="line">        <span class="string">"userFlags"</span> : <span class="number">0</span>,</div><div class="line">        <span class="string">"totalIndexSize"</span> : <span class="number">24528</span>,</div><div class="line">        <span class="string">"indexSizes"</span> : &#123;</div><div class="line">                <span class="string">"_id_"</span> : <span class="number">8176</span>,</div><div class="line">                <span class="string">"username_-1"</span> : <span class="number">8176</span>,</div><div class="line">                <span class="string">"username_1_logintime_-1"</span> : <span class="number">8176</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"ok"</span> : <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时我们通过<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.loginrecord.find(&#123;<span class="attr">username</span>:<span class="string">"zhangsan"</span>&#125;).sort(&#123;<span class="attr">logintime</span>:<span class="number">-1</span>&#125;)</div></pre></td></tr></table></figure></p>
+<p>进行查询时就会用到{username:1,logintime:-1}的复合索引</p>
+<h1 id="使用注意事项"><a href="#使用注意事项" class="headerlink" title="使用注意事项"></a>使用注意事项</h1><h2 id="1、find方法和sort方法都会用到索引"><a href="#1、find方法和sort方法都会用到索引" class="headerlink" title="1、find方法和sort方法都会用到索引"></a>1、find方法和sort方法都会用到索引</h2><p>例如，当我们需要查看用户的登陆记录，并将记录按用户名按字母序输出<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.loginrecord.find(&#123;&#125;).sort(&#123;<span class="attr">username</span>:<span class="number">1</span>&#125;)</div></pre></td></tr></table></figure></p>
+<p>sort方法就会用到以username为键的索引。<br>如果我们要查询用户名为zhangsan的登陆记录，并按登陆时间logintime逆序输出<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.login.record.find(&#123;<span class="attr">username</span>:<span class="string">"zhangsan"</span>&#125;).sort(&#123;<span class="attr">logintime</span>:<span class="number">1</span>&#125;)</div></pre></td></tr></table></figure></p>
+<p>此时就会用到username和logintime的复合索引(注意：不是username,logintime的单独索引)。</p>
+<h2 id="2、复合索引字段的顺序很重要"><a href="#2、复合索引字段的顺序很重要" class="headerlink" title="2、复合索引字段的顺序很重要"></a>2、复合索引字段的顺序很重要</h2><p>复合索引创建时字段的先后顺序是很重要的，需要知道的是以{username:1,logintime:-1}和以{logintime:-1,username:1}<br>创建的复合索引是不同的，{username:1,logintime:-1}是先以username分组然后再在满足条件的分组里以logintime分组；<br>而{logintime:-1,username:1}则是先按logintime分组然后再在满足条件的分组里以username分组。<br>为了说明复合索引顺序的问题，我们先为loginrecord集合加一个字段online用来表示用户当前是否在线。<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> LoginRecord <span class="keyword">struct</span> &#123;</div><div class="line">  UserName  <span class="keyword">string</span>    <span class="string">`bson:"username"`</span></div><div class="line">  LoginTime time.Time <span class="string">`bson:"logintime"`</span></div><div class="line">  OnLine    <span class="keyword">bool</span>		<span class="string">`bson:"online"`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在假设用户登陆后online字段为true，用户登出后改为false，于是在只允许单用户登陆的情况下，loginrecord集合里面<br>一个用户就只可能有一条online为true的记录。假设用户量很大且登陆频繁的情况下，我们需要查找当前在线的用户，<br>按用户名字母序输出。这个时候就需要建立online和username两个字段的复合索引。于是我们就要考虑</p>
+<blockquote>
+<p>情况1：建立{username:1,online:1}的复合索引<br>情况2：建立{online:1,username:1}的复合索引</p>
+<h3 id="情况1：建立-username-1-online-1-的复合索引"><a href="#情况1：建立-username-1-online-1-的复合索引" class="headerlink" title="情况1：建立{username:1,online:1}的复合索引"></a>情况1：建立{username:1,online:1}的复合索引</h3><p>先以用户名分组，在已online分组，此时由于每个用户都存在多条登陆记录而只有一条在线记录，<br>此时每个username分组我们都只能找到一条记录。然后又在把每条记录以username排序，实际是先删选出来然后再排序，<br>索引{username:1,online:1}就没有创建的意义。</p>
+</blockquote>
+<h3 id="情况2：建立-online-1-username-1-的复合索引"><a href="#情况2：建立-online-1-username-1-的复合索引" class="headerlink" title="情况2：建立{online:1,username:1}的复合索引"></a>情况2：建立{online:1,username:1}的复合索引</h3><p>先以online分组，在以username分组，此时就能很方便的从online为true的分组里找到所有记录。查询速度是<br>情况1所不能比的。所以根据自己的业务需要设定复合索引的字段顺序很重要。</p>
+<blockquote>
+<p>注： mongodb的索引的数据是B树,感兴趣的可以自己搜索以便更好理解mongodb的索引使用</p>
+</blockquote>
+<h2 id="3、复合索引还可以支持与索引字段前缀匹配的查询"><a href="#3、复合索引还可以支持与索引字段前缀匹配的查询" class="headerlink" title="3、复合索引还可以支持与索引字段前缀匹配的查询"></a>3、复合索引还可以支持与索引字段前缀匹配的查询</h2><p>复合索引除了支持所有索引字段的匹配查询外，还支持与索引字段前缀匹配的查询。怎么理解呢?<br>例如上面我们建立了{username:1,logintime:-1}的索引，此时不但可以同时匹配{username:”xxx”,logintime:”xxx”}<br>这种查询，还支持{username:”xxx”}这种查询，但不支持{logintime:”xxx”}这种查询，因为logintime不是<br>{username:1,logintime:-1}的前缀<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.loginrecord.find(&#123;<span class="attr">username</span>:<span class="string">"zhangsan"</span>,<span class="attr">logintime</span>:&#123;<span class="string">"$gt"</span>:ISODate(<span class="string">"2017-06-08T01:41:28.944Z"</span>)&#125;&#125;)</div><div class="line">db.loginrecord.find(&#123;<span class="attr">username</span>:<span class="string">"zhangsan"</span>&#125;)</div></pre></td></tr></table></figure></p>
+<p>因此，如果你建立了{username:1,logintime:-1}，就不必在建立{username:1}或者{username:-1}这种索引，<br>要知道索引多了是会影响插入和更新操作的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongo/" rel="tag"># mongo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/14/mongo索引使用1/" rel="next" title="mongo索引使用1">
+                <i class="fa fa-chevron-left"></i> mongo索引使用1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="baorongquan" />
+          <p class="site-author-name" itemprop="name">baorongquan</p>
+           
+              <p class="site-description motion-element" itemprop="description">find myself</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#复合索引"><span class="nav-number">1.</span> <span class="nav-text">复合索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用注意事项"><span class="nav-number">2.</span> <span class="nav-text">使用注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、find方法和sort方法都会用到索引"><span class="nav-number">2.1.</span> <span class="nav-text">1、find方法和sort方法都会用到索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、复合索引字段的顺序很重要"><span class="nav-number">2.2.</span> <span class="nav-text">2、复合索引字段的顺序很重要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情况1：建立-username-1-online-1-的复合索引"><span class="nav-number">2.2.1.</span> <span class="nav-text">情况1：建立{username:1,online:1}的复合索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况2：建立-online-1-username-1-的复合索引"><span class="nav-number">2.2.2.</span> <span class="nav-text">情况2：建立{online:1,username:1}的复合索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、复合索引还可以支持与索引字段前缀匹配的查询"><span class="nav-number">2.3.</span> <span class="nav-text">3、复合索引还可以支持与索引字段前缀匹配的查询</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baorongquan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://baorq.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/10/15/mongo索引使用2/';
+          this.page.identifier = '2017/10/15/mongo索引使用2/';
+          this.page.title = 'mongo索引使用2';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://baorq.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

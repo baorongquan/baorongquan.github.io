@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/10/15/mongo%E7%B4%A2%E5%BC%95%E4%BD%BF%E7%94%A82/</loc>
+    <lastmod>2017-10-15T10:54:15.243Z</lastmod>
+    <data>
+        <display>
+        <title>mongo索引使用2</title>
+        <pubTime>2017-10-15T09:15:39.000Z</pubTime>
+        
+        <tag>mongo</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库" url="http://yoursite.com/categories/database/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/10/14/mongo%E7%B4%A2%E5%BC%95%E4%BD%BF%E7%94%A81/</loc>
     <lastmod>2017-10-14T10:02:06.500Z</lastmod>
     <data>
