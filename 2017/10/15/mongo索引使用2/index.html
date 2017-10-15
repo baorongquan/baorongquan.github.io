@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/15/mongo索引使用2/index.html">
 <meta property="og:site_name" content="从零开始的人生">
 <meta property="og:description" content="前面说了mongo的索引创建，查看，删除；今天主要来说下复合索引和索引使用时的注意事项。 复合索引mongodb支持用户为多个域创建索引，也就是复合索引。还是以用户登陆记录集合loginrecord为例，假设我们要查询用户登陆的每条记录，并按登陆时间逆序显示，所以需要为username和logintime创建复合索引。 12345678910111213141516171819202122&amp;gt;">
-<meta property="og:updated_time" content="2017-10-15T10:54:15.243Z">
+<meta property="og:updated_time" content="2017-10-15T10:57:05.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongo索引使用2">
 <meta name="twitter:description" content="前面说了mongo的索引创建，查看，删除；今天主要来说下复合索引和索引使用时的注意事项。 复合索引mongodb支持用户为多个域创建索引，也就是复合索引。还是以用户登陆记录集合loginrecord为例，假设我们要查询用户登陆的每条记录，并按登陆时间逆序显示，所以需要为username和logintime创建复合索引。 12345678910111213141516171819202122&amp;gt;">
@@ -376,8 +376,8 @@
 <p>现在假设用户登陆后online字段为true，用户登出后改为false，于是在只允许单用户登陆的情况下，loginrecord集合里面<br>一个用户就只可能有一条online为true的记录。假设用户量很大且登陆频繁的情况下，我们需要查找当前在线的用户，<br>按用户名字母序输出。这个时候就需要建立online和username两个字段的复合索引。于是我们就要考虑</p>
 <blockquote>
 <p>情况1：建立{username:1,online:1}的复合索引<br>情况2：建立{online:1,username:1}的复合索引</p>
-<h3 id="情况1：建立-username-1-online-1-的复合索引"><a href="#情况1：建立-username-1-online-1-的复合索引" class="headerlink" title="情况1：建立{username:1,online:1}的复合索引"></a>情况1：建立{username:1,online:1}的复合索引</h3><p>先以用户名分组，在已online分组，此时由于每个用户都存在多条登陆记录而只有一条在线记录，<br>此时每个username分组我们都只能找到一条记录。然后又在把每条记录以username排序，实际是先删选出来然后再排序，<br>索引{username:1,online:1}就没有创建的意义。</p>
 </blockquote>
+<h3 id="情况1：建立-username-1-online-1-的复合索引"><a href="#情况1：建立-username-1-online-1-的复合索引" class="headerlink" title="情况1：建立{username:1,online:1}的复合索引"></a>情况1：建立{username:1,online:1}的复合索引</h3><p>先以用户名分组，在已online分组，此时由于每个用户都存在多条登陆记录而只有一条在线记录，<br>此时每个username分组我们都只能找到一条记录。然后又在把每条记录以username排序，实际是先删选出来然后再排序，<br>索引{username:1,online:1}就没有创建的意义。</p>
 <h3 id="情况2：建立-online-1-username-1-的复合索引"><a href="#情况2：建立-online-1-username-1-的复合索引" class="headerlink" title="情况2：建立{online:1,username:1}的复合索引"></a>情况2：建立{online:1,username:1}的复合索引</h3><p>先以online分组，在以username分组，此时就能很方便的从online为true的分组里找到所有记录。查询速度是<br>情况1所不能比的。所以根据自己的业务需要设定复合索引的字段顺序很重要。</p>
 <blockquote>
 <p>注： mongodb的索引的数据是B树,感兴趣的可以自己搜索以便更好理解mongodb的索引使用</p>
