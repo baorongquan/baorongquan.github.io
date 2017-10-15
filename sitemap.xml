@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2017-10-15T12:35:57.196Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2017-10-15T12:35:11.580Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/10/15/mongo%E7%B4%A2%E5%BC%95%E4%BD%BF%E7%94%A82/</loc>
     
     <lastmod>2017-10-15T10:57:05.231Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>http://yoursite.com/2017/10/14/mongo%E7%B4%A2%E5%BC%95%E4%BD%BF%E7%94%A81/</loc>
     
     <lastmod>2017-10-14T10:02:06.500Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
-    
-    <lastmod>2017-10-14T07:40:39.927Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
-    
-    <lastmod>2017-10-14T07:40:13.283Z</lastmod>
     
   </url>
   
