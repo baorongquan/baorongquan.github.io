@@ -3,6 +3,46 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2017/11/18/%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8privoxy%E6%90%AD%E9%85%8Dss%E4%BB%A3%E7%90%86%E4%B8%8A%E7%BD%91/</loc>
+    <lastmod>2017-11-18T09:50:34.032Z</lastmod>
+    <data>
+        <display>
+        <title>终端使用privoxy搭配ss代理上网</title>
+        <pubTime>2017-11-18T08:54:46.000Z</pubTime>
+        
+        <tag>网络</tag>
+         
+         
+           
+             
+              <breadCrumb title="配置" url="http://yoursite.com/categories/config/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/09/09/linux-ssr-use/</loc>
+    <lastmod>2017-10-28T14:49:18.634Z</lastmod>
+    <data>
+        <display>
+        <title>linux_ssr_use</title>
+        <pubTime>2017-09-09T10:25:06.000Z</pubTime>
+        
+        <tag>网络</tag>
+         
+         
+           
+             
+              <breadCrumb title="配置" url="http://yoursite.com/categories/config/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
   <url>
@@ -39,26 +79,6 @@
            
              
               <breadCrumb title="数据库" url="http://yoursite.com/categories/database/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/09/09/linux-ssr-use/</loc>
-    <lastmod>2017-10-14T07:37:28.363Z</lastmod>
-    <data>
-        <display>
-        <title>linux_ssr_use</title>
-        <pubTime>2017-09-09T10:25:06.000Z</pubTime>
-        
-        <tag>网络</tag>
-         
-         
-           
-             
-              <breadCrumb title="配置" url="http://yoursite.com/categories/config/"/>
           
         </display>
     </data>
