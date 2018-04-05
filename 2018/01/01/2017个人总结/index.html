@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mongo," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,17 +93,16 @@
 
 
 
-<meta name="description" content="在数据库做查询时,适当的索引可以提高查询的效率，避免全表扫描。mongo建立索引的时候需要指定索引为升序1或降序-1,对于单个字段建立索引时这个排序规则并不重要，因为mongodb可以沿任一方向遍历索引。 索引创建假设我有一个loginrecord集合(下面是golang 定义),有两个字段，string类型的username和时间类型的logintime1234type LoginRecord">
-<meta name="keywords" content="mongo">
+<meta name="description" content="2017个人总结一、工作总结1、用户权限管理用户登陆后，在session里面保存用户id,session通过redis保存，session对应自己唯一的sessionid,通过id获取到session管理器，然后再获取对应的键值，有效期为30分钟，登陆时还会保存一些其他信息,方便用户后面访问其他接口时判断该用户对该接口是否有权限。使用的是beego提供的session组件。 2、自动任务调度器通过">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mongo索引使用1">
-<meta property="og:url" content="http://yoursite.com/2017/10/14/mongo索引使用1/index.html">
+<meta property="og:title" content="从零开始的人生">
+<meta property="og:url" content="http://yoursite.com/2018/01/01/2017个人总结/index.html">
 <meta property="og:site_name" content="从零开始的人生">
-<meta property="og:description" content="在数据库做查询时,适当的索引可以提高查询的效率，避免全表扫描。mongo建立索引的时候需要指定索引为升序1或降序-1,对于单个字段建立索引时这个排序规则并不重要，因为mongodb可以沿任一方向遍历索引。 索引创建假设我有一个loginrecord集合(下面是golang 定义),有两个字段，string类型的username和时间类型的logintime1234type LoginRecord">
-<meta property="og:updated_time" content="2017-10-14T10:02:06.500Z">
+<meta property="og:description" content="2017个人总结一、工作总结1、用户权限管理用户登陆后，在session里面保存用户id,session通过redis保存，session对应自己唯一的sessionid,通过id获取到session管理器，然后再获取对应的键值，有效期为30分钟，登陆时还会保存一些其他信息,方便用户后面访问其他接口时判断该用户对该接口是否有权限。使用的是beego提供的session组件。 2、自动任务调度器通过">
+<meta property="og:updated_time" content="2018-01-01T05:15:11.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongo索引使用1">
-<meta name="twitter:description" content="在数据库做查询时,适当的索引可以提高查询的效率，避免全表扫描。mongo建立索引的时候需要指定索引为升序1或降序-1,对于单个字段建立索引时这个排序规则并不重要，因为mongodb可以沿任一方向遍历索引。 索引创建假设我有一个loginrecord集合(下面是golang 定义),有两个字段，string类型的username和时间类型的logintime1234type LoginRecord">
+<meta name="twitter:title" content="从零开始的人生">
+<meta name="twitter:description" content="2017个人总结一、工作总结1、用户权限管理用户登陆后，在session里面保存用户id,session通过redis保存，session对应自己唯一的sessionid,通过id获取到session管理器，然后再获取对应的键值，有效期为30分钟，登陆时还会保存一些其他信息,方便用户后面访问其他接口时判断该用户对该接口是否有权限。使用的是beego提供的session组件。 2、自动任务调度器通过">
 
 
 
@@ -131,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/14/mongo索引使用1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/01/2017个人总结/"/>
 
 
 
 
 
-  <title>mongo索引使用1 | 从零开始的人生</title>
+  <title> | 从零开始的人生</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/14/mongo索引使用1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/01/2017个人总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="baorongquan">
@@ -284,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mongo索引使用1</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -296,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-14T15:43:49+08:00">
-                2017-10-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T13:15:11+08:00">
+                2018-01-01
               </time>
             
 
@@ -307,28 +306,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -337,9 +314,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/14/mongo索引使用1/#comments" itemprop="discussionUrl">
+                <a href="/2018/01/01/2017个人总结/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/14/mongo索引使用1/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/01/2017个人总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -369,15 +346,10 @@
       
 
       
-        <p>在数据库做查询时,适当的索引可以提高查询的效率，避免全表扫描。<br>mongo建立索引的时候需要指定索引为升序1或降序-1,对于单个字段建立索引时这个排序规则并不重要，<br>因为mongodb可以沿任一方向遍历索引。</p>
-<h1 id="索引创建"><a href="#索引创建" class="headerlink" title="索引创建"></a>索引创建</h1><p>假设我有一个loginrecord集合(下面是golang 定义),有两个字段，string类型的username和时间类型的logintime<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> LoginRecord <span class="keyword">struct</span> &#123;</div><div class="line">  UserName <span class="keyword">string</span> <span class="string">`bson:"username"`</span></div><div class="line">  LoginTime time.Time <span class="string">`bson:"logintime"`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>记录用户和该用户的登陆记录，现在对用户名建立索引;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.loginrecord.createIndex(&#123;<span class="attr">username</span>:<span class="number">1</span>&#125;)</div></pre></td></tr></table></figure></p>
-<h1 id="索引查看"><a href="#索引查看" class="headerlink" title="索引查看"></a>索引查看</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.loginrecord.getIndexes()</div></pre></td></tr></table></figure>
-<p>此时会看到有两个索引，一个是我们刚刚建立的username，另一个是mongodb默认以_id创建的索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&gt; db.loginrecord.createIndex(&#123;username:1&#125;)</div><div class="line">&gt; db.loginrecord.getIndexes()</div><div class="line">[</div><div class="line">        &#123;</div><div class="line">                &quot;v&quot; : 1,</div><div class="line">                &quot;key&quot; : &#123;</div><div class="line">                        &quot;_id&quot; : 1</div><div class="line">                &#125;,</div><div class="line">                &quot;ns&quot; : &quot;test.loginrecord&quot;,</div><div class="line">                &quot;name&quot; : &quot;_id_&quot;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">                &quot;v&quot; : 1,</div><div class="line">                &quot;key&quot; : &#123;</div><div class="line">                        &quot;username&quot; : 1</div><div class="line">                &#125;,</div><div class="line">                &quot;ns&quot; : &quot;test.loginrecord&quot;,</div><div class="line">                &quot;name&quot; : &quot;username_1&quot;</div><div class="line">        &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
-<p>不过我更喜欢用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&gt; db.loginrecord.stats()</div><div class="line">&#123;</div><div class="line">        <span class="string">"ns"</span> : <span class="string">"test.loginrecord"</span>,</div><div class="line">        <span class="string">"count"</span> : <span class="number">1</span>,</div><div class="line">        <span class="string">"size"</span> : <span class="number">72</span>,</div><div class="line">        <span class="string">"avgObjSize"</span> : <span class="number">72</span>,</div><div class="line">        <span class="string">"storageSize"</span> : <span class="number">4096</span>,</div><div class="line">        <span class="string">"numExtents"</span> : <span class="number">1</span>,</div><div class="line">        <span class="string">"nindexes"</span> : <span class="number">2</span>,</div><div class="line">        <span class="string">"lastExtentSize"</span> : <span class="number">4096</span>,</div><div class="line">        <span class="string">"paddingFactor"</span> : <span class="number">1</span>,</div><div class="line">        <span class="string">"systemFlags"</span> : <span class="number">1</span>,</div><div class="line">        <span class="string">"userFlags"</span> : <span class="number">0</span>,</div><div class="line">        <span class="string">"totalIndexSize"</span> : <span class="number">16352</span>,</div><div class="line">        <span class="string">"indexSizes"</span> : &#123;</div><div class="line">                <span class="string">"_id_"</span> : <span class="number">8176</span>,</div><div class="line">                <span class="string">"username_1"</span> : <span class="number">8176</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"ok"</span> : <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>来查看索引，indexSizes里面的就是索引,<em>1表示升序，</em>-1表示降序</p>
-<h1 id="索引删除"><a href="#索引删除" class="headerlink" title="索引删除"></a>索引删除</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.loginrecord.dropIndex(&#123;<span class="attr">username</span>:<span class="number">1</span>&#125;)</div><div class="line">&#123; <span class="string">"nIndexesWas"</span> : <span class="number">2</span>, <span class="string">"ok"</span> : <span class="number">1</span> &#125;</div></pre></td></tr></table></figure>
-<p>索引删除的时候也必须指定升序还是降序，不然会找不到报错</p>
+        <h1 id="2017个人总结"><a href="#2017个人总结" class="headerlink" title="2017个人总结"></a>2017个人总结</h1><h2 id="一、工作总结"><a href="#一、工作总结" class="headerlink" title="一、工作总结"></a>一、工作总结</h2><h3 id="1、用户权限管理"><a href="#1、用户权限管理" class="headerlink" title="1、用户权限管理"></a>1、用户权限管理</h3><p>用户登陆后，在session里面保存用户id,session通过redis保存，session对应自己唯一的sessionid,通过id获取到session管理器，然后再获取对应的键值，有效期为30分钟，<br>登陆时还会保存一些其他信息,方便用户后面访问其他接口时判断该用户对该接口是否有权限。使用的是beego提供的session组件。</p>
+<h3 id="2、自动任务调度器"><a href="#2、自动任务调度器" class="headerlink" title="2、自动任务调度器"></a>2、自动任务调度器</h3><p>通过配置文件或者数据库保存job和task文件，job和task一一对应，job里面保存taskid以及每个task周期，task里面保存每个task需要执行的命令。调度服务启动时读取配置文件，按job里面的调度时间创建定时任务。task里面的内容可以通过rabbitmq转发出去，每执行一次就转发一次，实现定时唤醒其他服务的功能。task里可以保存很多其他信息发送给不同服务，不同服务按照自己接受到的信息，进行不同的操作。</p>
+<h3 id="3、mongodb-数据库使用"><a href="#3、mongodb-数据库使用" class="headerlink" title="3、mongodb 数据库使用"></a>3、mongodb 数据库使用</h3><p>mongodb模糊查询，分页查询。<br>mongodb索引创建和性能调优。<br>mongodb通过mapreduce或aggregate进行数据统计</p>
+<h3 id="4、redis-数据库使用"><a href="#4、redis-数据库使用" class="headerlink" title="4、redis 数据库使用"></a>4、redis 数据库使用</h3><p>通过redis保存session信息和用户信息,还用来缓存不经常改变但经常使用的配置。</p>
 
       
     </div>
@@ -405,12 +377,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/mongo/" rel="tag"># mongo</a>
-          
-        </div>
-      
 
       
       
@@ -420,8 +386,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/09/linux-ssr-use/" rel="next" title="linux_ssr_use">
-                <i class="fa fa-chevron-left"></i> linux_ssr_use
+              <a href="/2017/11/18/终端使用privoxy搭配ss代理上网/" rel="next" title="终端使用privoxy搭配ss代理上网">
+                <i class="fa fa-chevron-left"></i> 终端使用privoxy搭配ss代理上网
               </a>
             
           </div>
@@ -430,8 +396,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/mongo索引使用2/" rel="prev" title="mongo索引使用2">
-                mongo索引使用2 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/05/我不知道的go里面的json操作/" rel="prev" title="我不知道的go里面的json操作">
+                我不知道的go里面的json操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -568,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#索引创建"><span class="nav-number">1.</span> <span class="nav-text">索引创建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引查看"><span class="nav-number">2.</span> <span class="nav-text">索引查看</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引删除"><span class="nav-number">3.</span> <span class="nav-text">索引删除</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2017个人总结"><span class="nav-number">1.</span> <span class="nav-text">2017个人总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、工作总结"><span class="nav-number">1.1.</span> <span class="nav-text">一、工作总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、用户权限管理"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、用户权限管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、自动任务调度器"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、自动任务调度器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、mongodb-数据库使用"><span class="nav-number">1.1.3.</span> <span class="nav-text">3、mongodb 数据库使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、redis-数据库使用"><span class="nav-number">1.1.4.</span> <span class="nav-text">4、redis 数据库使用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -731,9 +697,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/10/14/mongo索引使用1/';
-          this.page.identifier = '2017/10/14/mongo索引使用1/';
-          this.page.title = 'mongo索引使用1';
+          this.page.url = 'http://yoursite.com/2018/01/01/2017个人总结/';
+          this.page.identifier = '2018/01/01/2017个人总结/';
+          this.page.title = '';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://baorq.disqus.com/embed.js';
