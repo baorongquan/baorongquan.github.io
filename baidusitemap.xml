@@ -5,14 +5,19 @@
     
   <url>
     <loc>http://yoursite.com/2018/04/05/%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84go%E9%87%8C%E9%9D%A2%E7%9A%84json%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2018-04-05T04:24:51.112Z</lastmod>
+    <lastmod>2018-04-05T04:30:53.628Z</lastmod>
     <data>
         <display>
         <title>我不知道的go里面的json操作</title>
         <pubTime>2018-04-05T04:04:39.000Z</pubTime>
         
+        <tag>golang</tag>
+         
          
            
+             
+              <breadCrumb title="programming" url="http://yoursite.com/categories/programming/"/>
+          
         </display>
     </data>
     </url>
