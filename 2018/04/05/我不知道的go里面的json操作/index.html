@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="golang," />
+  <meta name="keywords" content="golang,json," />
 
 
 
@@ -94,13 +94,13 @@
 
 
 <meta name="description" content="一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回1234&amp;#123;    ID int64 `json:&quot;id,string&quot;`    Name string `json:&quot;name&quot;`&amp;#125; 这样在返回给前端的时候就不用自己把int64转成然后再返回给前端了，毕竟javascript不支持int64 二、 可以把tag写成">
-<meta name="keywords" content="golang">
+<meta name="keywords" content="golang,json">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我不知道的go里面的json操作">
 <meta property="og:url" content="http://yoursite.com/2018/04/05/我不知道的go里面的json操作/index.html">
 <meta property="og:site_name" content="从零开始的人生">
 <meta property="og:description" content="一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回1234&amp;#123;    ID int64 `json:&quot;id,string&quot;`    Name string `json:&quot;name&quot;`&amp;#125; 这样在返回给前端的时候就不用自己把int64转成然后再返回给前端了，毕竟javascript不支持int64 二、 可以把tag写成">
-<meta property="og:updated_time" content="2018-04-05T04:30:53.628Z">
+<meta property="og:updated_time" content="2018-04-05T04:36:03.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我不知道的go里面的json操作">
 <meta name="twitter:description" content="一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回1234&amp;#123;    ID int64 `json:&quot;id,string&quot;`    Name string `json:&quot;name&quot;`&amp;#125; 这样在返回给前端的时候就不用自己把int64转成然后再返回给前端了，毕竟javascript不支持int64 二、 可以把tag写成">
@@ -372,7 +372,7 @@
         <h1 id="一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回"><a href="#一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回" class="headerlink" title="一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回"></a>一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回</h1><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    ID <span class="keyword">int64</span> <span class="string">`json:"id,string"`</span></div><div class="line">    Name <span class="keyword">string</span> <span class="string">`json:"name"`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样在返回给前端的时候就不用自己把int64转成然后再返回给前端了，毕竟javascript不支持int64</p>
 <h1 id="二、-可以把tag写成”-“-表示忽略该字段序列化的时候忽略该字段"><a href="#二、-可以把tag写成”-“-表示忽略该字段序列化的时候忽略该字段" class="headerlink" title="二、 可以把tag写成”-“, 表示忽略该字段序列化的时候忽略该字段"></a>二、 可以把tag写成”-“, 表示忽略该字段序列化的时候忽略该字段</h1><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    ID <span class="keyword">int64</span> <span class="string">`json:"id,string"`</span></div><div class="line">    Name <span class="keyword">string</span> <span class="string">`json:"name"`</span></div><div class="line">    Age <span class="keyword">int</span> <span class="string">`json:"-"`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="三、自己实现MarshalJson-和-UnMarshalJson-替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化"><a href="#三、自己实现MarshalJson-和-UnMarshalJson-替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化" class="headerlink" title="三、自己实现MarshalJson 和 UnMarshalJson 替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化"></a>三、自己实现MarshalJson 和 UnMarshalJson 替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化</h1><p>需要了解更多json的高级操作可以看json的源码注释</p>
+<h1 id="三、自己实现MarshalJSON-和-UnmarshalJSON-替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化"><a href="#三、自己实现MarshalJSON-和-UnmarshalJSON-替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化" class="headerlink" title="三、自己实现MarshalJSON 和 UnmarshalJSON 替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化"></a>三、自己实现MarshalJSON 和 UnmarshalJSON 替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化</h1><p>需要了解更多json的高级操作可以看json的源码注释</p>
 <blockquote>
 <p>/src/encoding/json/encode.go</p>
 </blockquote>
@@ -411,6 +411,8 @@
           
             <a href="/tags/golang/" rel="tag"># golang</a>
           
+            <a href="/tags/json/" rel="tag"># json</a>
+          
         </div>
       
 
@@ -431,6 +433,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/18/go-micro安装错误处理记录/" rel="prev" title="go-micro安装错误处理记录">
+                go-micro安装错误处理记录 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -509,7 +515,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -531,7 +537,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -566,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回"><span class="nav-number">1.</span> <span class="nav-text">一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-可以把tag写成”-“-表示忽略该字段序列化的时候忽略该字段"><span class="nav-number">2.</span> <span class="nav-text">二、 可以把tag写成”-“, 表示忽略该字段序列化的时候忽略该字段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、自己实现MarshalJson-和-UnMarshalJson-替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化"><span class="nav-number">3.</span> <span class="nav-text">三、自己实现MarshalJson 和 UnMarshalJson 替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回"><span class="nav-number">1.</span> <span class="nav-text">一、可以在tag里面声明把Integer，Float，Boolean类型的值直接序列化时转换为string类型返回</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-可以把tag写成”-“-表示忽略该字段序列化的时候忽略该字段"><span class="nav-number">2.</span> <span class="nav-text">二、 可以把tag写成”-“, 表示忽略该字段序列化的时候忽略该字段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、自己实现MarshalJSON-和-UnmarshalJSON-替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化"><span class="nav-number">3.</span> <span class="nav-text">三、自己实现MarshalJSON 和 UnmarshalJSON 替换掉默认的Marshal和UnMarshal方法，自己定制序列化和反序列化</span></a></li></ol></div>
             
 
           </div>
