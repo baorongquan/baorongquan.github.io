@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/05/12/golang%E5%9C%A8recover%E9%87%8C%E9%9D%A2%E5%8F%91%E7%94%9Fpanic/</loc>
+    <lastmod>2018-05-12T02:58:49.155Z</lastmod>
+    <data>
+        <display>
+        <title>golang在recover里面发生panic</title>
+        <pubTime>2018-05-12T02:28:37.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+         
+           
+             
+              <breadCrumb title="programming" url="http://yoursite.com/categories/programming/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/05/06/%E8%AE%B0%E4%B8%80%E6%AC%A1golang%E7%BB%8F%E5%85%B8%E9%94%99%E8%AF%AF-for%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84go%E5%8D%8F%E7%A8%8B%E8%B0%83%E7%94%A8/</loc>
     <lastmod>2018-05-06T09:02:03.800Z</lastmod>
     <data>
