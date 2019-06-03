@@ -880,132 +880,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/01/2017个人总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="baorongquan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="从零开始的人生">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/01/2017个人总结/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T13:15:11+08:00">
-                2018-01-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/01/2017个人总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/01/2017个人总结/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="2017个人总结"><a href="#2017个人总结" class="headerlink" title="2017个人总结"></a>2017个人总结</h1><h2 id="一、工作总结"><a href="#一、工作总结" class="headerlink" title="一、工作总结"></a>一、工作总结</h2><h3 id="1、用户权限管理"><a href="#1、用户权限管理" class="headerlink" title="1、用户权限管理"></a>1、用户权限管理</h3><p>用户登陆后，在session里面保存用户id,session通过redis保存，session对应自己唯一的sessionid,通过id获取到session管理器，然后再获取对应的键值，有效期为30分钟，<br>登陆时还会保存一些其他信息,方便用户后面访问其他接口时判断该用户对该接口是否有权限。使用的是beego提供的session组件。</p>
-<h3 id="2、自动任务调度器"><a href="#2、自动任务调度器" class="headerlink" title="2、自动任务调度器"></a>2、自动任务调度器</h3><p>通过配置文件或者数据库保存job和task文件，job和task一一对应，job里面保存taskid以及每个task周期，task里面保存每个task需要执行的命令。调度服务启动时读取配置文件，按job里面的调度时间创建定时任务。task里面的内容可以通过rabbitmq转发出去，每执行一次就转发一次，实现定时唤醒其他服务的功能。task里可以保存很多其他信息发送给不同服务，不同服务按照自己接受到的信息，进行不同的操作。</p>
-<h3 id="3、mongodb-数据库使用"><a href="#3、mongodb-数据库使用" class="headerlink" title="3、mongodb 数据库使用"></a>3、mongodb 数据库使用</h3><p>mongodb模糊查询，分页查询。<br>mongodb索引创建和性能调优。<br>mongodb通过mapreduce或aggregate进行数据统计</p>
-<h3 id="4、redis-数据库使用"><a href="#4、redis-数据库使用" class="headerlink" title="4、redis 数据库使用"></a>4、redis 数据库使用</h3><p>通过redis保存session信息和用户信息,还用来缓存不经常改变但经常使用的配置。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/18/终端使用privoxy搭配ss代理上网/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1682,7 +1556,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1746,7 +1620,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
